@@ -1,32 +1,49 @@
-import { useState } from 'react'
+interface IEmployee {
+  id:number
+  firstName: string,
+  lastName: string
+}
 
 function App() {
+  const employee : IEmployee[] = [
+    {
+      id:1,
+      firstName: 'John',
+      lastName: 'Wights'
+    },
+    {
+      id:2,
+      firstName: 'Sophia',
+      lastName: 'Rouse'
+    }
+  ]
+  const exportBtn = () => {
+    console.log("Test");
+  }
   return (
-    <div>
+    <div className='p-2'>
+      <div className="flex">
+        <h2 className="text-2xl font-medium mx-2">Employee List</h2>
+        <button onClick={exportBtn} className="text-xl bg-green-500 px-2 rounded-lg" type="button">Export</button>
+      </div>
       <table className="table-auto">
         <thead>
           <tr>
-            <th>Song</th>
-            <th>Artist</th>
-            <th>Year</th>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-            <td>Malcolm Lockyer</td>
-            <td>1961</td>
-          </tr>
-          <tr>
-            <td>Witchy Woman</td>
-            <td>The Eagles</td>
-            <td>1972</td>
-          </tr>
-          <tr>
-            <td>Shining Star</td>
-            <td>Earth, Wind, and Fire</td>
-            <td>1975</td>
-          </tr>
+          {
+            employee.map((e:IEmployee, key:any) => (
+              <tr key={key}>
+                <td>{e.id}</td>
+                <td>{e.firstName}</td>
+                <td>{e.lastName}</td>
+              </tr>
+            ))
+          }
         </tbody>
       </table>
     </div>
